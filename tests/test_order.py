@@ -2,7 +2,7 @@ import json
 import allure
 import pytest
 import requests
-from helpers.helper_data import OrderData
+from data.static_data import OrderData, ResponseText
 from helpers.endpoints import Endpoints
 from helpers.urls import Urls
 
@@ -18,4 +18,4 @@ class TestCreateOrder:
         data.update(color)
         data_dump = json.dumps(data)
         response = requests.post(f'{Urls.SCOOTER_URL}{Endpoints.create_order}', headers=headers, data=data_dump)
-        assert response.status_code == 201 and "track" in response.text
+        assert response.status_code == 201 and ResponseText.track_in_order_list_response in response.text
